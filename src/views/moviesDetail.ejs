@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.title %> </title>
+    <link rel='stylesheet' href='/css/style.css' />
+
+</head>
+<body>
+    <%- include("./partials/header") %>
+    <h1><%= movie.title %> </h1>    
+    <br>
+    <p>RATING: <%= movie.rating %> </p>
+    <br>
+    <p>AWARDS: <%= movie.awards %> </p>
+    <br>
+    <p>LENGTH: <%= movie.length + ' min'%> </p>
+    <br>
+    <p>RELEASE DATE: <%= movie.release_date %> </p>
+    <br>
+    <% if (movie.genero) { %>
+    <p>GENERO: <a href="/genres/detail/<%= movie.genero.id %>"><%= movie.genero.name %></a></p>
+    <br>
+    <% }else{ %>
+        <P>No tiene genero esta pelicula</P>
+        <br>
+    <% } %> 
+
+    <% if (movie.actores.length >0) { %>
+        <p>ACTORES: 
+            <ul>
+                <% movie.actores.forEach(actor => { %>
+                    <a href="/actors/detail/<%= actor.id %>"><li><%= actor.first_name %> <%= actor.last_name %></li></a>
+                <% }) %>
+            </ul>
+        </p>
+    <% }else{ %>
+            <P>No tiene actores esta pelicula</P>
+    <% } %> 
+    
+    
+    <br>
+    <section>
+        <!--Aquí debe colocar los botones de Modificar - Borrar y Listado de Películas-->
+        <p> 
+            <button class="botonAgregar" type="submit"><a href="/movies/edit/<%= movie.id %>">Editar</a></button>
+            <button class="botonBorrar" type="submit"><a href="/movies/delete/<%= movie.id %>">Borrar</a></button>
+        </p>
+    </section>
+
+</body>
+</html>

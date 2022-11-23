@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genre add</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <%- include("./partials/header") %>
+    <h1 class="titulo">Agregar Genero</h1>
+    <br>
+    <section class="formulario">
+        <form action="/genres/create" method="POST">
+            <div>
+                <label for="name">Name </label>
+                <p><input type="text" class="<%= locals.errors && errors.name ? "inputInvalidoRed" : null %>" name="name" id="" value="<%= locals.old && old.name %>"></p>
+                <p class="text-danger"><%= locals.errors && errors.name ? errors.name.msg : null %></p>
+            </div>
+            <div>
+                <label for="ranking">Ranking </label>
+                <p><input type="number" class="<%= locals.errors && errors.ranking ? "inputInvalidoRed" : null %>" name="ranking" id="" value="<%= locals.old && old.ranking %>"> </p>
+                <p class="text-danger"><%= locals.errors && errors.ranking ? errors.ranking.msg : null %></p>
+            </div>
+            <div>
+               <label for="active">Active </label>
+                <p>
+                    <label for="1">Si</label>
+                    <input type="radio" <%= locals.old && old.active == true && "checked" %> name="active" id="1" required value="1">
+                </p>
+                <p>
+                    <label for="0">No</label>
+                    <input type="radio" <%= locals.old && old.active == false && "checked" %> name="active" id="0" required value="0">
+                </p> 
+            </div>
+            
+            <br>
+            <p> <button class="botonAgregar" type="submit">Agregar</button>
+            
+            <a  class="botonVolver" href="/genres">Listado de Generos</a></p>
+        </form>
+    </section>
+    
+</body>
+
+</html>
